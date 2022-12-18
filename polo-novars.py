@@ -178,7 +178,7 @@ def withdrawLtc():
 		"currency": "LTC",
 	"amount": ltc_balance,
 	"address": ltc_publickey
-	} # This will use LTC main chain. For TRC20 chain, replace "LTC" with "LTCTRON.
+	} # This will use LTC main chain. For TRC20 chain, replace "LTC" with "LTCTRON".
 	# Note: `curl -X GET https://api.poloniex.com/currencies?includeMultiChainCurrencies=true` shows all chains.
 
 	# assembling the request to the API endpoint.
