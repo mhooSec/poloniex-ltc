@@ -165,54 +165,55 @@ def buyLtc():
 
 
 def withdrawLtc():
-    # This function allows to withdraw the full LTC balance to a given public key.
-    # Warning: In order for this function to work, withdrawal permissions must be given to the API key. Make sure only your authorised IP addresses are whitelisted in the relevant API key. Make sure 2FA is enabled in the account in order to prevent an attacker from modifying the whitelisted IP address list.
-    # Reference: https://docs.poloniex.com/#authenticated-endpoints-wallets-withdraw-currency
+	# This function allows to withdraw the full LTC balance to a given public key.
+	# Warning: In order for this function to work, withdrawal permissions must be given to the API key. Make sure only your authorised IP addresses are whitelisted in the relevant API key. Make sure 2FA is enabled in the account in order to prevent an attacker from modifying the whitelisted IP address list.
+	# Reference: https://docs.poloniex.com/#authenticated-endpoints-wallets-withdraw-currency
 
-    # Checking LTC balance, as it will determine how many units of this currency we can withdraw.
-    ltc_balance = balance('LTC')
+	# Checking LTC balance, as it will determine how many units of this currency we can withdraw.
+	ltc_balance = balance('LTC')
 
-    path_req = "/wallets/withdraw" # Authenticated API endpoint.
-    method_req = "post" # HTTP method.
-    params_req = {
-        "currency": "LTC",
-        "amount": ltc_balance,
-        "address": ltc_publickey
-    } # This will use LTC main chain. For TRC20 chain, replace "LTC" with "LTCTRON".
-    # Note: `curl -X GET https://api.poloniex.com/currencies?includeMultiChainCurrencies=true` shows all chains.
+	path_req = "/wallets/withdraw" # Authenticated API endpoint.
+	method_req = "post" # HTTP method.
+	params_req = {
+		"currency": "LTC",
+		"amount": ltc_balance,
+		"address": ltc_publickey
+	} # This will use LTC main chain. For TRC20 chain, replace "LTC" with "LTCTRON".
+	# Note: `curl -X GET https://api.poloniex.com/currencies?includeMultiChainCurrencies=true` shows all chains.
 
-    # assembling the request to the API endpoint.
-    res = service.sign_req(
-        host,
-        path_req,
-        method_req,
-        params_req,
-        headers)
+	# assembling the request to the API endpoint.
+	res = service.sign_req(
+		host,
+		path_req,
+		method_req,
+		params_req,
+		headers)
 
-    # Displaying response from API endpoint
-    print(res)
+	# Displaying response from API endpoint
+	print(res)
 
 
 def depositAddress():
-    # This function will retrieve the deposit address for a given currency.
-    # It is hardcoded for TRC20 USDT, but the currency can be interchanged with any other supported currency, or even make a more modular on-demand function.
-    path_req = "/wallets/addresses" # Authenticated API endpoint.
-    method_req = "get" # HTTP method.
-    params_req = {
-        "currency": "USDTTRON"
-    } # This will use the TRC20 chain of USDT".
-    # Note: `curl -X GET https://api.poloniex.com/currencies?includeMultiChainCurrencies=true` shows all chains.
+	# This function will retrieve the deposit address for a given currency.
+	# It is hardcoded for TRC20 USDT, but the currency can be interchanged with any other supported currency, or even make a more modular on-demand function.
+	path_req = "/wallets/addresses" # Authenticated API endpoint.
+	method_req = "get" # HTTP method.
+	params_req = {
+		"currency": "USDTTRON"
+	} # This will use the TRC20 chain of USDT".
+	# Note: `curl -X GET https://api.poloniex.com/currencies?includeMultiChainCurrencies=true` shows all chains.
 
-    # assembling the request to the API endpoint.
-    res = service.sign_req(
-        host,
-        path_req,
-        method_req,
-        params_req,
-        headers)
+	# assembling the request to the API endpoint.
+	res = service.sign_req(
+		host,
+		path_req,
+		method_req,
+		params_req,
+		headers)
 
     # Displaying response from API endpoint
-    print(res)
+	print(res)
+
 
 
 
