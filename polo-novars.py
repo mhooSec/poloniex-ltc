@@ -211,7 +211,7 @@ def depositAddress():
 		params_req,
 		headers)
 
-    # Displaying response from API endpoint
+	# Displaying response from API endpoint
 	print(res)
 
 
