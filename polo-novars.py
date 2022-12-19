@@ -196,6 +196,7 @@ def withdrawLtc():
 def depositAddress():
 	# This function will retrieve the deposit address for a given currency.
 	# It is hardcoded for TRC20 USDT, but the currency can be interchanged with any other supported currency, or even make a more modular on-demand function.
+	# Reference: https://docs.poloniex.com/#authenticated-endpoints-wallets-deposit-addresses
 	path_req = "/wallets/addresses" # Authenticated API endpoint.
 	method_req = "get" # HTTP method.
 	params_req = {
