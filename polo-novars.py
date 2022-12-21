@@ -135,7 +135,7 @@ def buyLtc():
 
 	# Debug: Calculations.
 	# print(float(ltc_price) - 0.10)
-	print("We can convert our USDT to " + str(float(usdt_balance) / (float(ltc_price) - 0.10)) + " units of LTC")
+	print("We can convert our USDT to " + str(round(float(usdt_balance) / (float(ltc_price) - 0.10), 6)) + " units of LTC.")
 
 	# Converting our entire USDT balance to LTC.
 	# Reference: https://docs.poloniex.com/#authenticated-endpoints-orders-create-order
@@ -147,10 +147,12 @@ def buyLtc():
 		"type": "limit",
 		"side": "buy",
 		"timeInForce": "GTC",
-		"price": float(ltc_price) - 0.10,
-		"quantity": float(usdt_balance) / (float(ltc_price) - 0.10),
+		"price": round(float(ltc_price) - 0.10, 2),
+		"quantity": round(float(usdt_balance) / (float(ltc_price)), 6),
 		"clientOrderId": "",
 	} # We deduct 0.10 to current price in order to set an order below mid-price (maker, lower fees).
+	# We round the quantity to 6 decimal places in order to prevent quantity scale error.
+	# We also round the price to 2 decimal places in order to prevent price scale error.
 
 	# Assembling the request to the API endpoint.
 	res = service.sign_req(
